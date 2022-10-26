@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setFavorite } from '../actions'
+import { useDispatch } from 'react-redux'
+import { setFavorite } from '../slices/dataSlice'
 import StarButton from './StarButton'
 
 const PokemonCard = ({ name, image, types = [], id }) => {

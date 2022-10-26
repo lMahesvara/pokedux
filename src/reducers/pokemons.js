@@ -1,43 +1,10 @@
-import {
-  SET_FAVORITE,
-  SET_LOADING,
-  SET_POKEMONS
-} from '../actions/types'
+import { combineReducers } from 'redux'
+import dataReducer from '../slices/dataSlice'
+import uiReducer from '../slices/uiSlice'
 
-const initialState = {
-  pokemons: [],
-  loading: true,
-  favorite: []
-}
+const rootReducer = combineReducers({
+  data: dataReducer,
+  ui: uiReducer
+})
 
-export const pokemonsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_POKEMONS:
-      return {
-        ...state,
-        pokemons: action.payload
-      }
-    case SET_FAVORITE:
-      if (state.favorite.includes(action.payload)) {
-        return {
-          ...state,
-          favorite: state.favorite.filter(
-            pokemon => pokemon !== action.payload
-          )
-        }
-      }
-      return {
-        ...state,
-        favorite: [...state.favorite, action.payload]
-      }
-
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: action.payload
-      }
-
-    default:
-      return state
-  }
-}
+export default rootReducer
